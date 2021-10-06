@@ -1,5 +1,5 @@
 ﻿CREATE PROCEDURE [dbo].[CustomerLookUp]
-	@cashier_id nvarchar(128),
+	@cashier_id int,
 	@sale_date datetime2
 
 AS

@@ -77,6 +77,7 @@
     <Build Include="StoredProcedures\CustomerLookUp.sql" />
     <Build Include="StoredProcedures\Customer_REG.sql" />
     <Build Include="StoredProcedures\Customers_GetAll.sql" />
+    <Build Include="StoredProcedures\Customer_DEL.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PublishLocation\CART-ME-DATABAE.publish.xml" />

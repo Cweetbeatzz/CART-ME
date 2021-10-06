@@ -1,5 +1,5 @@
 ﻿CREATE PROCEDURE [dbo].[Customer_REG]
-	@Id nvarchar(128),
+	@Id int,
 	@firstname nvarchar(50),
 	@lastname nvarchar(50),
 	@email nvarchar(256),

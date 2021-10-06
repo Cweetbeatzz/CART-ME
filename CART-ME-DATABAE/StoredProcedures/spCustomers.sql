@@ -1,5 +1,5 @@
 ﻿CREATE PROCEDURE [dbo].[spCustomers]
-	@Id nvarchar(128)
+	@Id int
 AS
 BEGIN
 SET NOCOUNT ON;
