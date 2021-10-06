@@ -42,19 +42,13 @@ namespace CART_ME.Controllers
                 }
 
             };
-
-
-            //CustomersModel customers = new CustomersModel()
-            //{
-            //    Firstname = "ojo",
-            //    Lastname = "Emmanuel",
-            //    Email = "Ojo.emmanuel@Outlook.com",
-            //    Password = "123456789",
-            //    confirm_password = "123456789",
-            //};
-
             ViewBag.CustomersModel = CustomerList;
             return View();
+        }
+
+        public ActionResult EditCustomers()
+        {
+
         }
 
 

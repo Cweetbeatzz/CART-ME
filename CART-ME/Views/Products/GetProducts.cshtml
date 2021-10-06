@@ -49,9 +49,15 @@
                     @Html.DisplayFor(modelItem => item.QuantityInStock)
                 </td>
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                    <button type="button" class="btn btn-success btn-sm text-white">
+                        @Html.ActionLink("Edit", "Edit", new { id = item.id })
+                    </button> |
+                    <button type="button" class="btn btn-info btn-sm text-white">
+                        @Html.ActionLink("Details", "Details", new { id = item.id })
+                    </button> |
+                    <button type="button" class="btn btn-danger btn-sm text-white">
+                        @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                    </button>
                 </td>
             </tr>
         }

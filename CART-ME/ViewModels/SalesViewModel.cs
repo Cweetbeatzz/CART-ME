@@ -8,7 +8,7 @@ namespace CART_ME.ViewModels
 {
     public class SalesViewModel
     {
-        public ProductsModel products { get; set; }
-        public List<SaleDetailsModel> saleDetails { get; set; }
+        public SaleDetailsModel products_quantity { get; set; }
+        public List<SaleModel> saleDetails { get; set; }
     }
 }
