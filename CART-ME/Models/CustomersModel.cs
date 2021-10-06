@@ -9,6 +9,9 @@ namespace CART_ME.Models
 {
     public class CustomersModel
     {
+        public int Id { get; set; }
+
+
         [Required]
         [DisplayName("FIRST NAME")]
         public string Firstname

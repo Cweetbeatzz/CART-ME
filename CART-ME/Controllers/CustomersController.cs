@@ -15,15 +15,18 @@ namespace CART_ME.Controllers
 
 
         // GET: Customers
-        public ActionResult Customers()
+        public ActionResult Customers( )
         {
-            return View();
+            return View(new CustomersModel { Id = 0 });
         }
 
         //######################################################################## CREATE USER
         [HttpPost]
         public ActionResult CreateCustomer(CustomersModel customers)
         {
+            //string SQLinsert = "";
+            //string SQLupdate = "";
+
             using (SqlConnection cnn = new SqlConnection(SQLconnection.GetConnectionString("CART-ME-DB")))
             {
                 using (SqlCommand cmd = new SqlCommand("INSERT INTO CUSTOMERS(firstname, lastname, email,password, confirm_password)" +
@@ -66,6 +69,7 @@ namespace CART_ME.Controllers
                             (
                              new CustomersModel
                              {
+                                 Id = Convert.ToInt32(datarows["Id"]),
                                  Firstname = datarows["FirstName"].ToString(),
                                  Lastname = datarows["LastName"].ToString(),
                                  Email = datarows["Email"].ToString(),
@@ -130,12 +134,12 @@ namespace CART_ME.Controllers
                     {
                         dt.Load(output);
                         DataRow dataRow = dt.Rows[0];
-
+                        _customersToEdit.Id = Convert.ToInt32(dataRow["Id"]);
                         _customersToEdit.Firstname = dataRow["FirstName"].ToString();
                         _customersToEdit.Lastname = dataRow["LastName"].ToString();
                         _customersToEdit.Email = dataRow["Email"].ToString();
-                        _customersToEdit.Password = dataRow["Password"].ToString();
-                        _customersToEdit.confirm_password = dataRow["ConfirmPassword"].ToString();
+                        //_customersToEdit.Password = dataRow["Password"].ToString();
+                        //_customersToEdit.confirm_password = dataRow["ConfirmPassword"].ToString();
 
                         return View("CreateCustomer", _customersToEdit);
                     }
@@ -145,7 +149,9 @@ namespace CART_ME.Controllers
                     }
                 }
             }
-            return RedirectToAction("GetAllCustomers");
         }
+
+        //######################################################################## 
+
     }
 }
