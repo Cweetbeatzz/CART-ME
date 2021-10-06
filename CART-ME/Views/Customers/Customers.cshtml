@@ -5,30 +5,31 @@
 
 <h3>Customers</h3>
 
-<table class="table-hover table-bordered table-responsive">
-    <tr class="btn-info">
-        <th>FIRSTNAME</th>
-        <th>LASTNAME</th>
-        <th>EMAIL</th>
-        <th>PASSWORD</th>
-        <th>CONFIRM-PASSWORD</th>
-        <th>PROCESS</th>
-    </tr>
-    @foreach (var cust in ViewBag.CustomersModel)
-    {
-        <tr>
-            <td>@cust.Firstname</td>
-            <td>@cust.Lastname</td>
-            <td>@cust.Email</td>
-            <td>@cust.Password</td>
-            <td>@cust.confirm_password</td>
-            <td>
-                <button type="button" class="btn btn-success btn-sm">EDIT</button> |
-                <button type="button" class="btn btn-danger btn-sm">DELETE</button>
-            </td>
+<div class="container">
+    <table class="table table-hover table-bordered table-responsive">
+        <tr class="btn-info">
+            <th>FIRSTNAME</th>
+            <th>LASTNAME</th>
+            <th>EMAIL</th>
+            <th>PASSWORD</th>
+            <th>CONFIRM-PASSWORD</th>
+            <th>PROCESS</th>
         </tr>
-    }
+        @foreach (var cust in ViewBag.CustomersModel)
+        {
+            <tr>
+                <td>@cust.Firstname</td>
+                <td>@cust.Lastname</td>
+                <td>@cust.Email</td>
+                <td>@cust.Password</td>
+                <td>@cust.confirm_password</td>
+                <td>
+                    <button type="button" class="btn btn-success btn-sm">EDIT</button> |
+                    <button type="button" class="btn btn-danger btn-sm">DELETE</button>
+                </td>
+            </tr>
+        }
+    </table>
+</div>
 
-
-</table>
 
