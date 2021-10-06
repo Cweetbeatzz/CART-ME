@@ -1,6 +1,8 @@
 ﻿using CART_ME.Models;
+using CART_ME.SQLconfig;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -14,42 +16,31 @@ namespace CART_ME.Controllers
         // GET: Customers
         public ActionResult Customers()
         {
-            List<CustomersModel> CustomerList = new List<CustomersModel>()
-            {
-                new CustomersModel()
-                {
-                     Firstname = "ojo",
-                     Lastname = "Emmanuel",
-                     Email = "Ojo.emmanuel@Outlook.com",
-                     Password = "123456789",
-                     confirm_password = "123456789",
-                },
-                new CustomersModel()
-                {
-                     Firstname = "Bumi",
-                     Lastname = "Temi",
-                     Email = "Bumi.Temi@Outlook.com",
-                     Password = "123456789",
-                     confirm_password = "123456789",
-                },
-                new CustomersModel()
-                {
-                     Firstname = "Shade",
-                     Lastname = "Layo",
-                     Email = "Shade.Layo@Outlook.com",
-                     Password = "123456789",
-                     confirm_password = "123456789",
-                }
-
-            };
-            ViewBag.CustomersModel = CustomerList;
+           
             return View();
         }
 
-        public ActionResult EditCustomers()
+        //########################################################################
+        [HttpPost]
+        public ActionResult CreateCustomer(CustomersModel customers)
         {
+            using (SqlConnection cnn = new SqlConnection(SQLconnection.GetConnectionString("CART-ME-DB")))
+            {
+                using (SqlCommand cmd = new SqlCommand("INSERT INTO CUSTOMERS(firstname, lastname, email,password, confirm_password)" +
+                    " VALUES('" + customers.Firstname + "','" + customers.Lastname + "','" + customers.Email + "','" + customers.Password + "','" + customers.confirm_password + "',)"))
+                {
+                    if (cnn.State != System.Data.ConnectionState.Open)
+                    {
+                        cnn.Open();
+                    }
 
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            return Content("Successful");
         }
+
+
 
 
 
