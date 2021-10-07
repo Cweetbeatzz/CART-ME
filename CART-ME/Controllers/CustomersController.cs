@@ -29,9 +29,16 @@ namespace CART_ME.Controllers
 
             using (SqlConnection cnn = new SqlConnection(SQLconnection.GetConnectionString("CART-ME-DB")))
             {
-                using (SqlCommand cmd = new SqlCommand("INSERT INTO CUSTOMERS(firstname, lastname, email,password, confirm_password)" +
-                    " VALUES('" + customers.Firstname + "','" + customers.Lastname + "','" + customers.Email + "','" + customers.Password + "','" + customers.confirm_password + "',)"))
+                using (SqlCommand cmd = new SqlCommand("Customer_REG", cnn))
                 {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("@id", customers.Id);
+                    cmd.Parameters.AddWithValue("@firstname", customers.Firstname);
+                    cmd.Parameters.AddWithValue("@lastanme", customers.Lastname);
+                    cmd.Parameters.AddWithValue("@password", customers.Password);
+                    cmd.Parameters.AddWithValue("@confirm_password", customers.confirm_password);
+
                     if (cnn.State != ConnectionState.Open)
                     {
                         cnn.Open();
@@ -50,8 +57,10 @@ namespace CART_ME.Controllers
 
             using (SqlConnection cnn = new SqlConnection(SQLconnection.GetConnectionString("CART-ME-DB")))
             {
-                using (SqlCommand cmd = new SqlCommand("SELECT * FROM Customers", cnn))
+                using (SqlCommand cmd = new SqlCommand("Customers_GetAll", cnn))
                 {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
                     if (cnn.State != ConnectionState.Open)
                     {
                         cnn.Open();
@@ -84,7 +93,7 @@ namespace CART_ME.Controllers
             return View();
         }
         //######################################################################## DELETE USER
-
+        [HttpDelete]
         public ActionResult Delete(int id)
         {
             if (id < 0)
@@ -93,8 +102,12 @@ namespace CART_ME.Controllers
             }
             using (SqlConnection cnn = new SqlConnection(SQLconnection.GetConnectionString("CART-ME-DB")))
             {
-                using (SqlCommand cmd = new SqlCommand("DELETE FROM Customers WHERE Id = '" + id + "'", cnn))
+                using (SqlCommand cmd = new SqlCommand("Customer_DEL", cnn))
                 {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("@Id", id);
+
                     if (cnn.State != ConnectionState.Open)
                     {
                         cnn.Open();
@@ -107,6 +120,7 @@ namespace CART_ME.Controllers
         }
         //######################################################################## UPDATE USER
 
+        [HttpPatch]
         public ActionResult Edit(int id)
         {
             if (id <= 0)
@@ -118,8 +132,12 @@ namespace CART_ME.Controllers
 
             using (SqlConnection cnn = new SqlConnection(SQLconnection.GetConnectionString("CART-ME-DB")))
             {
-                using (SqlCommand cmd = new SqlCommand("SELECT * FROM Customers WHERE Id = '" + id + "'", cnn))
+                using (SqlCommand cmd = new SqlCommand("Customers_UPDATE", cnn))
                 {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("@id", id);
+
                     if (cnn.State != ConnectionState.Open)
                     {
                         cnn.Open();
@@ -149,6 +167,62 @@ namespace CART_ME.Controllers
                     }
                 }
             }
+        }
+
+        //######################################################################## SEARCH
+
+        [HttpGet]
+        //public ActionResult Search(string search)
+        //{
+        //    List<CustomersModel> list = new List<CustomersModel>();
+        //}
+        //######################################################################## 
+        public List<CustomersModel> customer_list(string storedProcedure, string search)
+        {
+            List<CustomersModel> Customerlist = new List<CustomersModel>();
+
+            using (SqlConnection cnn = new SqlConnection(SQLconnection.GetConnectionString("CART-ME-DB")))
+            {
+                using (SqlCommand cmd = new SqlCommand("Customers_GetAll", cnn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    //if (search != string.Empty)                                            //SEARCH
+                    //{                                                                      //SEARCH
+                    //    cmd.Parameters.AddWithValue("@Filther", search);                   //SEARCH
+                    //}
+
+                    if (cnn.State != ConnectionState.Open)
+                    {
+                        cnn.Open();
+                    }
+
+                    SqlDataReader output = cmd.ExecuteReader(); //FETCHING DATA FROM THE DATABASE
+
+                    DataTable dt = new DataTable();
+
+                    dt.Load(output); //LOADS ALL RECORDS RO A TABLE
+
+                    foreach (DataRow datarows in dt.Rows)
+                    {
+                        Customerlist.Add
+                            (
+                             new CustomersModel
+                             {
+                                 Id = Convert.ToInt32(datarows["Id"]),
+                                 Firstname = datarows["FirstName"].ToString(),
+                                 Lastname = datarows["LastName"].ToString(),
+                                 Email = datarows["Email"].ToString(),
+                                 //Password = datarows["Password"].ToString(),
+                                 //confirm_password = datarows["ConfirmPassword"].ToString(),
+                             }
+
+                            );
+                    }
+                }
+            }
+
+            return Customerlist;
         }
 
         //######################################################################## 

@@ -3,7 +3,7 @@
 AS
 BEGIN
 set nocount on;
-	 DELETE Id
+	 DELETE 
 	 FROM [dbo].[Customers]
 	 WHERE Id = @Id
 	 

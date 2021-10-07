@@ -6,9 +6,27 @@
 
 <h2>All Customers</h2>
 
-<p>
-    @Html.ActionLink("REGISTER", "Create", null, new {@class = "btn btn-primary" })
-</p>
+@*################################################################################################*@
+
+@using (Html.BeginForm("Search", "Search", FormMethod.Get))
+{
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <div class="input-group">
+                    <span class="input-group-btn">
+                        <label>Search: </label>
+                        <input type="text" class="form-control" id="search" name="search" />
+                        <input type="submit" value="Search" class="btn btn-success mr-5" />
+
+                         @Html.ActionLink("REGISTER", "Create", null, new { @class = "btn btn-primary " })
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
 <table class="table table-hover table-bordered table-responsive">
     <tr class="btn-warning">
         <th>
@@ -29,28 +47,29 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Firstname)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Lastname)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Password)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.confirm_password)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.PrimaryKey })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Firstname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Lastname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Password)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.confirm_password)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.PrimaryKey })
+            </td>
+        </tr>
+    }
 
 </table>

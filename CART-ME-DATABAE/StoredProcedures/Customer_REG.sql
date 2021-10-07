@@ -11,8 +11,8 @@ BEGIN
 
 
 set nocount on;
-	 INSERT INTO dbo.[Customers] (Id, firstname, lastname, email, [password], confirm_password) 
-	 VALUES (@Id, @firstname, @lastname, @email,@password,@confirm_password); 
+	 INSERT INTO dbo.[Customers] (firstname, lastname, email, [password], confirm_password) 
+	 VALUES ( @firstname, @lastname, @email,@password,@confirm_password); 
 	 
 	 
 	 
