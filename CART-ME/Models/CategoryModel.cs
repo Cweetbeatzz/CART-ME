@@ -13,6 +13,5 @@ namespace CART_ME.Models
        
         public string Name { get; set; }
 
-        public List<CategoryModel> CategoryNames { get; set; }
     }
 }
