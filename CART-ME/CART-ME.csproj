@@ -278,6 +278,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202110071136347_Customers.cs" />
+    <Compile Include="Migrations\202110071136347_Customers.designer.cs">
+      <DependentUpon>202110071136347_Customers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CustomersModel.cs" />
     <Compile Include="Models\InventoryModel.cs" />
     <Compile Include="Models\ProductsModel.cs" />
@@ -287,6 +292,7 @@
     <Compile Include="Models\SaleModel.cs" />
     <Compile Include="Models\SalesReportModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SQLconfig\ApplicationDBcontext.cs" />
     <Compile Include="SQLconfig\SQLconnection.cs" />
     <Compile Include="ViewModels\SalesViewModel.cs" />
   </ItemGroup>
@@ -310,6 +316,11 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202110071136347_Customers.resx">
+      <DependentUpon>202110071136347_Customers.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

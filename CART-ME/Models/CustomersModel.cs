@@ -12,31 +12,33 @@ namespace CART_ME.Models
         public int Id { get; set; }
 
 
-        [Required]
+        [Required(ErrorMessage = "Firstname is Reguired")]
         [DisplayName("FIRST NAME")]
+        [StringLength(50,ErrorMessage = "Firstname must not exceed 50 Characters")]
         public string Firstname
         {
             get; set;
         }
-        [Required]
+        [Required(ErrorMessage = "Lastname is Reguired")]
         [DisplayName("LAST NAME")]
+        [StringLength(50, ErrorMessage = "Lastname must not exceed 50 Characters")]
         public string Lastname
         {
             get; set;
         }
-        [Required]
+        [Required(ErrorMessage = "Email is Reguired")]
         [EmailAddress]
         [DisplayName("EMAIL")]
         public string Email
         {
             get; set;
         }
-        [Required]
+        [Required(ErrorMessage = "Password is Reguired")]
         public string Password
         {
             get; set;
         }
-        [Required]
+        [Required(ErrorMessage = "Confirmation is Reguired")]
         [DisplayName("CONFIRM PASSWORD")]
         [Compare(nameof(Password), ErrorMessage = "Password do not Match")]
         public string confirm_password
