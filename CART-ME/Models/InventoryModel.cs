@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -7,20 +8,22 @@ namespace CART_ME.Models
 {
     public class InventoryModel
     {
-        public int ProductId
+        //FOREGIN KEY
+        public int ProductId//#########################
         {
             get; set;
         }
-        public int Qunatity
+        //[Required(ErrorMessage = "Quantity is Reguired")]
+        public int Quantity//#########################
         {
             get; set;
         }
 
-        public decimal PurchasePrice
+        public decimal PurchasePrice//#########################
         {
             get; set;
         }
-        public DateTime PurchaseDate
+        public DateTime PurchaseDate//#########################
         {
             get; set;
         }

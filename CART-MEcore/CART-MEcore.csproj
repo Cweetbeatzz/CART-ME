@@ -5,4 +5,9 @@
     <RootNamespace>CART_MEcore</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="SQLconnections\" />
+    <Folder Include="ViewModels\" />
+  </ItemGroup>
+
 </Project>

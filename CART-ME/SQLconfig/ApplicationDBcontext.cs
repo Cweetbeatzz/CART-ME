@@ -10,5 +10,6 @@ namespace CART_ME.SQLconfig
     public class ApplicationDBcontext:DbContext
     {
         public DbSet<CustomersModel> Customers { get; set; }
+        public DbSet<ProductsModel> Products { get; set; }
     }
 }

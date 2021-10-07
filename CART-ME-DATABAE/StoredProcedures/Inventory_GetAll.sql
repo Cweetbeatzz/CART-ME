@@ -2,7 +2,7 @@
 AS
 BEGIN
 set nocount on;
-	 SELECT [Id],[product_id],[quatity],[purchase_price],[purchase_date]
+	 SELECT [Id],[product_id],[quantity],[purchase_price],[purchase_date]
 	 FROM dbo.Inventory
 	 
 

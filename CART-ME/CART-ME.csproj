@@ -282,7 +282,12 @@
     <Compile Include="Migrations\202110071136347_Customers.designer.cs">
       <DependentUpon>202110071136347_Customers.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202110071200413_UpdatingProductsTable.cs" />
+    <Compile Include="Migrations\202110071200413_UpdatingProductsTable.designer.cs">
+      <DependentUpon>202110071200413_UpdatingProductsTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\CategoryModel.cs" />
     <Compile Include="Models\CustomersModel.cs" />
     <Compile Include="Models\InventoryModel.cs" />
     <Compile Include="Models\ProductsModel.cs" />
@@ -320,6 +325,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202110071136347_Customers.resx">
       <DependentUpon>202110071136347_Customers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110071200413_UpdatingProductsTable.resx">
+      <DependentUpon>202110071200413_UpdatingProductsTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -15,7 +15,7 @@ namespace CART_ME.Controllers
 
 
         // GET: Customers
-        public ActionResult Customers( )
+        public ActionResult Customers()
         {
             return View(new CustomersModel { Id = 0 });
         }
@@ -26,28 +26,33 @@ namespace CART_ME.Controllers
         {
             //string SQLinsert = "";
             //string SQLupdate = "";
-
-            using (SqlConnection cnn = new SqlConnection(SQLconnection.GetConnectionString("CART-ME-DB")))
+            if (ModelState.IsValid)
             {
-                using (SqlCommand cmd = new SqlCommand("Customer_REG", cnn))
+                using (SqlConnection cnn = new SqlConnection(SQLconnection.GetConnectionString("CART-ME-DB")))
                 {
-                    cmd.CommandType = CommandType.StoredProcedure;
-
-                    cmd.Parameters.AddWithValue("@id", customers.Id);
-                    cmd.Parameters.AddWithValue("@firstname", customers.Firstname);
-                    cmd.Parameters.AddWithValue("@lastanme", customers.Lastname);
-                    cmd.Parameters.AddWithValue("@password", customers.Password);
-                    cmd.Parameters.AddWithValue("@confirm_password", customers.confirm_password);
-
-                    if (cnn.State != ConnectionState.Open)
+                    using (SqlCommand cmd = new SqlCommand("Customer_REG", cnn))
                     {
-                        cnn.Open();
-                    }
+                        cmd.CommandType = CommandType.StoredProcedure;
 
-                    cmd.ExecuteNonQuery();
+                        cmd.Parameters.AddWithValue("@id", customers.Id);
+                        cmd.Parameters.AddWithValue("@firstname", customers.Firstname);
+                        cmd.Parameters.AddWithValue("@lastanme", customers.Lastname);
+                        cmd.Parameters.AddWithValue("@password", customers.Password);
+                        cmd.Parameters.AddWithValue("@confirm_password", customers.confirm_password);
+
+                        if (cnn.State != ConnectionState.Open)
+                        {
+                            cnn.Open();
+                        }
+
+                        cmd.ExecuteNonQuery();
+                    }
                 }
+                return RedirectToAction("GetAllCustomers");
+
             }
-            return Content("Successful");
+            return View("CreateCustomer", customers);
+
         }
         //######################################################################## GET USER
         [HttpGet]
@@ -121,7 +126,7 @@ namespace CART_ME.Controllers
         //######################################################################## UPDATE USER
 
         [HttpPatch]
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int? id)
         {
             if (id <= 0)
             {
@@ -226,6 +231,15 @@ namespace CART_ME.Controllers
         }
 
         //######################################################################## 
+
+        //protected override void Dispose(bool diposing)
+        //{
+        //    if (diposing)
+        //    {
+        //        _context.Dispose();
+        //    }
+        //    base.Dispose(diposing);
+        //}
 
     }
 }
